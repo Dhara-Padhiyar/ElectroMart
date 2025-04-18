@@ -9,28 +9,28 @@
 </head>
 <body>
     <div id="fff-pagecontainer">
-	<?php include 'views/header.php'; ?>    
+	<?php include 'header.php'; ?>    
         <main>
            <a href="/auth/auth.php" id="fff-hero-btn">Login</a>
-            <img id="fff-heroimg" class="desktop" src="images/hero-image.jpg" alt="welcome-image"/>
+            <img id="fff-heroimg" class="desktop" src="../images/hero-image.jpg" alt="welcome-image"/>
             <div id="wrapper">
                 <section class="fff-services">
                     <div class="service">
-                        <div class="service-icon"><img src="images/quality-assurance.png" alt="quality-assurance-service-icon"/></div>
+                        <div class="service-icon"><img src="../images/quality-assurance.png" alt="quality-assurance-service-icon"/></div>
                         <div>
                             <p class="service-description">Quality Assurance</p>
                             <p>We have best quality products<br/>provides hi-tech mechanism</p>
                         </div>
                     </div>
                     <div class="service">
-                        <div class="service-icon"><img src="images/technical-support.png" alt="technical-support-service-icon"/></div>
+                        <div class="service-icon"><img src="../images/technical-support.png" alt="technical-support-service-icon"/></div>
                         <div>
                             <p class="service-description">Technical Support</p>
                             <p>we have team of expert technicians<br/>to provide 24x7 support</p>
                         </div>
                     </div>
                     <div class="service">
-                        <div class="service-icon"><img src="images/gadgets.png" alt="gedgets-service-icon"/></div>
+                        <div class="service-icon"><img src="../images/gadgets.png" alt="gedgets-service-icon"/></div>
                         <div>
                             <p class="service-description">Hi-Tech Gadgets</p>
                             <p>We have Hi-Tech products<br/>for all your needs</p>
@@ -43,7 +43,7 @@
                         <a href="#">
                             <div class="equipment">
                                 <div class="equipent-img">
-                                    <img src="images/equipment-1.png" alt="bench-press-equipment"/>
+                                    <img src="../images/equipment-1.png" alt="bench-press-equipment"/>
                                 </div>
                                 <div class="equipment-desc">
                                     <p>Laptop</p>
@@ -53,7 +53,7 @@
                         <a href="#">
                             <div class="equipment">
                                 <div class="equipent-img">
-                                    <img src="images/equipment-2.png" alt="lat-pulldown-machine-equipment"/>
+                                    <img src="../images/equipment-2.png" alt="lat-pulldown-machine-equipment"/>
                                 </div>
                                 <div class="equipment-desc">
                                     <p>Watch</p>
@@ -63,7 +63,7 @@
                         <a href="#">
                             <div class="equipment">
                                 <div class="equipent-img">
-                                    <img src="images/equipment-3.png" alt="elliptical-trainer-equipment"/>
+                                    <img src="../images/equipment-3.png" alt="elliptical-trainer-equipment"/>
                                 </div>
                                 <div class="equipment-desc">
                                     <p>Television</p>
@@ -75,7 +75,7 @@
                 <a href="product.php"><img id="fff-heroimg" class="desktop" src="images/home-page-second-banner.jpg" alt="welcome-image"/></a>
             </div>
         </main>
-        <?php include 'views/footer.php'; ?>
+        <?php include 'footer.php'; ?>
     </div>
 </body>
 </html>

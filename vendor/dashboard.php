@@ -77,15 +77,15 @@ $review_stmt->close();
         }
 
         .products-card {
-            background: linear-gradient(135deg, #0d6efd, #3a8ffd);
+            background: linear-gradient(135deg, #0d6efd, #3a8ffd) !important;
         }
 
         .orders-card {
-            background: linear-gradient(135deg, #198754, #33c48c);
+            background: linear-gradient(135deg, #198754, #33c48c) !important;
         }
 
         .reviews-card {
-            background: linear-gradient(135deg, #ffc107, #ffda6a);
+            background: linear-gradient(135deg, #ffc107, #ffda6a) !important;
             color: #212529;
         }
 

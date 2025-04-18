@@ -7,9 +7,15 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "admin") {
     exit;
 }
 
-$result = $conn->query("SELECT vendors.id, users.name, vendors.store_name, vendors.approved 
-                        FROM vendors JOIN users ON vendors.user_id = users.id");
+// ✅ Get all vendor users, along with approval status (if exists)
+$result = $conn->query("
+    SELECT u.id AS user_id, u.name, v.store_name, v.approved
+    FROM users u
+    LEFT JOIN vendors v ON u.id = v.user_id
+    WHERE u.role = 'vendor'
+");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,17 +48,19 @@ $result = $conn->query("SELECT vendors.id, users.name, vendors.store_name, vendo
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($row['id']); ?></td>
+                        <td><?php echo htmlspecialchars($row['user_id']); ?></td>
                         <td><?php echo htmlspecialchars($row['name']); ?></td>
-                        <td><?php echo htmlspecialchars($row['store_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['store_name'] ?? 'N/A'); ?></td>
                         <td>
                             <span class="badge <?php echo $row['approved'] ? 'bg-success' : 'bg-warning text-dark'; ?>">
                                 <?php echo $row['approved'] ? 'Approved' : 'Pending'; ?>
                             </span>
                         </td>
                         <td>
-                            <a href="approve_vendor.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-primary me-1">Approve</a>
-                            <a href="delete_vendor.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this vendor?')">Delete</a>
+                            <?php if (!$row['approved']): ?>
+                                <a href="approve_vendor.php?id=<?php echo $row['user_id']; ?>" class="btn btn-sm btn-primary me-1">Approve</a>
+                            <?php endif; ?>
+                            <a href="delete_vendor.php?id=<?php echo $row['user_id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this vendor?')">Delete</a>
                         </td>
                     </tr>
                     <?php endwhile; ?>
