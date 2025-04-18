@@ -16,6 +16,32 @@ if (!$product) {
     header("Location: products.php");
     exit();
 }
+
+// Track recently viewed if user is logged in
+$user_id = $_SESSION['user_id'] ?? 0;
+if ($user_id > 0) {
+    // Check if already viewed
+    $check = $conn->prepare("SELECT rid FROM recently_viewed WHERE id = ? AND product_id = ?");
+    $check->bind_param("ii", $user_id, $product_id);
+    $check->execute();
+    $check->store_result();
+
+    if ($check->num_rows > 0) {
+        // Update view time
+        $update = $conn->prepare("UPDATE recently_viewed SET viewed_at = NOW() WHERE id = ? AND product_id = ?");
+        $update->bind_param("ii", $user_id, $product_id);
+        $update->execute();
+        $update->close();
+    } else {
+        // Insert new record
+        $insert = $conn->prepare("INSERT INTO recently_viewed (id, product_id, viewed_at) VALUES (?, ?, NOW())");
+        $insert->bind_param("ii", $user_id, $product_id);
+        $insert->execute();
+        $insert->close();
+    }
+
+    $check->close();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

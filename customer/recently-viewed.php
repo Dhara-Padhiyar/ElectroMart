@@ -1,4 +1,5 @@
-<?php include '../config/db.php'; 
+<?php 
+include '../config/db.php'; 
 session_start();
 
 $user_id = $_SESSION['user_id'] ?? 0;
@@ -64,8 +65,8 @@ function time_elapsed_string($datetime) {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         margin: 20px;
         display: flex;
-        align-items: center;
-        gap: 5px !important;
+        flex-wrap: wrap;
+        gap: 15px;
     }
     </style>
 </head>
@@ -82,34 +83,34 @@ function time_elapsed_string($datetime) {
                 <?php if (!empty($recently_viewed)): ?>
                     <?php foreach ($recently_viewed as $product): ?>
                         <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <?php if (!empty($product['image']) && file_exists("../images/" . $product['image'])): ?>
-                            <img src="../images/<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>">
-                        <?php else: ?>
-                            <div class="bg-secondary text-white text-center p-5 rounded" style="height: 250px; display: flex; align-items: center; justify-content: center;">
-                                <i class="bi bi-image" style="font-size: 3rem;"></i>
+                            <div class="card h-100 shadow-sm">
+                                <?php if (!empty($product['image']) && file_exists("../images/" . $product['image'])): ?>
+                                    <img src="../images/<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                                <?php else: ?>
+                                    <div class="bg-secondary text-white text-center p-5 rounded" style="height: 250px; display: flex; align-items: center; justify-content: center;">
+                                        <i class="bi bi-image" style="font-size: 3rem;"></i>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h5>
+                                    <p class="card-text text-success">₹<?php echo number_format($product['price'], 2); ?></p>
+                                    <?php if (!empty($product['category_name'])): ?>
+                                        <span class="badge bg-primary mb-2"><?php echo htmlspecialchars($product['category_name']); ?></span>
+                                    <?php endif; ?>
+                                    <p class="text-muted small mb-3">Viewed <?php echo time_elapsed_string($product['viewed_at']); ?></p>
+                                    <a href="product_details.php?id=<?php echo $product['id']; ?>" class="btn btn-outline-primary mt-auto">
+                                        <i class="bi bi-eye"></i> View Again
+                                    </a>
+                                </div>
                             </div>
-                        <?php endif; ?>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h5>
-                            <p class="card-text text-success">₹<?php echo number_format($product['price'], 2); ?></p>
-                            <?php if (!empty($product['category_name'])): ?>
-                                <span class="badge bg-primary mb-2"><?php echo htmlspecialchars($product['category_name']); ?></span>
-                            <?php endif; ?>
-                            <p class="text-muted small mb-3">Viewed <?php echo time_elapsed_string($product['viewed_at']); ?></p>
-                            <a href="product_details.php?id=<?php echo $product['id']; ?>" class="btn btn-outline-primary mt-auto">
-                                <i class="bi bi-eye"></i> View Again
-                            </a>
                         </div>
-                    </div>
-                </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <div class="empty-recently-viewed">
+                    <div class="empty-recently-viewed text-center mt-5">
                         <i class="fas fa-clock" style="font-size: 50px; margin-bottom: 15px;"></i>
                         <h3>No Recently Viewed Items</h3>
                         <p>Products you view will appear here for easy access.</p>
-                        <a href="<?php echo $base_path; ?>product.php" class="btn btn-primary mt-3">
+                        <a href="product.php" class="btn btn-primary mt-3">
                             <i class="fas fa-shopping-bag"></i> Start Shopping
                         </a>
                     </div>
@@ -125,7 +126,6 @@ function time_elapsed_string($datetime) {
         document.querySelectorAll('.recent-product-actions button').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = this.getAttribute('data-id');
-                // AJAX call to add to cart
                 fetch('add-to-cart.php', {
                     method: 'POST',
                     headers: {
