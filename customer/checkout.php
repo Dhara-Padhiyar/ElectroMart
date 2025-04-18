@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'header.php'; ?>
 <div class="checkout-main-content mt-5">
     <h2>Checkout</h2>
-    <form method="post" action="" novalidate>
+    <form method="post" action="">
         <div class="row mt-4">
             <div class="col-md-8">
                 <div class="card mb-4">

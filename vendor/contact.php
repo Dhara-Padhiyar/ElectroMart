@@ -1,7 +1,7 @@
 <?php
 session_start();
-include './views/header.php'; 
-include "./config/db.php";
+include 'header.php'; 
+include "../config/db.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name    = $_POST['name'];
@@ -54,4 +54,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </body>
 </html>
-<?php include './views/footer.php'; ?>
+<?php include 'footer.php'; ?>
