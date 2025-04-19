@@ -1105,10 +1105,6 @@ textarea {
   }
 }
 @media screen and (max-width: 768px) {
-  .fff-logo {
-    left: 5px;
-    top: 55px;
-  }
   .fff-logo img {
     width: 190px;
   }
@@ -5288,3 +5284,122 @@ footer {
     transform: translateY(0);
   }
 }
+/* ============ RESPONSIVE ============ */
+
+/* Mobile View */
+@media (max-width: 768px) {
+  #fff-heroimg.desktop {
+    width: 100%;
+    height: auto;
+  }
+
+  #fff-hero-btn {
+    top: 15px;
+    right: 15px;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .fff-services {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .service {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .service-icon {
+    margin: 0 0 10px 0;
+  }
+
+  .fff-new-equipments .equipments {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .equipment {
+    width: 100%;
+    text-align: center;
+  }
+  nav.fff-nav ul {
+    margin-left: 0;
+    width: 100%;
+  }
+  .footer-division {
+    width: 80%;
+    margin: 0 auto;
+  }
+  header {
+    text-align: center;
+  }
+  .fff-logo {
+    float: none;
+  }
+  .equipments a {
+    width: 100%;
+  }
+  .fff-new-equipments h1 {
+    padding: 30px 0 0;
+  }
+  .about-header h1, .contact-header h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+  .mobile-sidebar-toggle {
+    padding: 10px;
+    z-index: 1000;
+    position: absolute;
+    top: 83px;
+}
+
+.hamburger {
+    width: 28px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+.offcanvas-body{
+  background-color: #0455ae;
+}
+
+/* Optional: Add hover effect */
+.hamburger:hover span {
+    background-color: #007bff;
+}
+
+}
+
+/* Tablet View */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .fff-services {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fff-new-equipments .equipments {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #fff-hero-btn {
+    right: 20px;
+    top: 20px;
+    padding: 12px 25px;
+    font-size: 15px;
+  }
+}
+
